@@ -1,26 +1,41 @@
 ---
 layout: default
 ---
-<div class="col-sm-12">
-    <div class="posts">
-      <div class="page-title">
-        {{ page.title }}
-        <div class="postlist-meta">
-          Posted
-          <time class="timeago" datetime="{{ page.date |  date: "%A %-d %B %Y" }}">{{ page.date }}</time>
-          ,
-          <a href="{{ page.url }}#disqus_thread">0 <i class="fa fa-comments-o fa-lg"></i></a>
-          comments.
-        </div>
-      </div>
-        <div class="post">
-            {{ content }}
-            {% include scripts/signoff_block.html %}
-        </div>
-    </div>
-</div>
-<script>
-    $(".page-preview-icon").hover(function(){
-        $(this).parents(".page-nav").css("z-index","5000");
-    });
-</script>
+<div class="progress" aria-hidden="true"></div>
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-header">
+    <p class="eyebrow">
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {% assign words = content | number_of_words %}<span aria-hidden="true">·</span> {{ words | divided_by: 220 | plus: 1 }} min read
+    </p>
+    <h1 class="post-title" itemprop="headline">{{ page.title | escape }}</h1>
+    {%- if page.tags.size > 0 %}
+    <ul class="tag-list">
+      {%- for tag in page.tags %}
+      <li><a class="tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag | replace: "_", " " }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </header>
+
+  <div class="prose" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    <nav class="post-nav" aria-label="More posts">
+      {%- if page.previous %}
+      <a class="post-nav-link prev" href="{{ page.previous.url | relative_url }}">
+        <span class="eyebrow">Previous</span>
+        <span>{{ page.previous.title | escape }}</span>
+      </a>
+      {%- endif %}
+      {%- if page.next %}
+      <a class="post-nav-link next" href="{{ page.next.url | relative_url }}">
+        <span class="eyebrow">Next</span>
+        <span>{{ page.next.title | escape }}</span>
+      </a>
+      {%- endif %}
+    </nav>
+  </footer>
+</article>

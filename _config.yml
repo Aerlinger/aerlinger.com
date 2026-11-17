@@ -1,15 +1,62 @@
-name: Wanga Theme
-markdown: redcarpet
-pygments: true
+# Site settings — used by jekyll-seo-tag, jekyll-feed and the templates.
+title: aerlinger
+tagline: Notes on software, data and open source
+description: >-
+  Writing on software, databases and open source, plus a handful of
+  projects I've built along the way.
+url: "https://aerlinger.com"
+baseurl: ""
+lang: en
 
+author:
+  name: aerlinger
+  url: "https://aerlinger.com"
+
+# Social links shown in the header/footer. Leave blank to hide.
+social:
+  github: aerlinger
+  twitter: ""
+  linkedin: ""
+  email: ""
+
+# Optional integrations (leave blank to disable)
+google_analytics: ""                       # GA4 measurement id, e.g. G-XXXXXXX
+adsense_client: "ca-pub-5556477712971909"
+
+# Build
 permalink: /:year/:month/:title/
-owner:
-    name: #
-    twitter: #
-    github: #
-    disqus_shortname: #
-    
-ga_id: #
-ga_username: #
-        
-timezone: #
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+excerpt_separator: "\n\n"
+timezone: America/New_York
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+collections:
+  projects:
+    output: false
+    sort_by: order
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: post }
+  - scope: { path: "" }
+    values: { layout: default }
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - vendor
+  - .github
+  - _publications
+  - _patents
+  - _open_source_contributions

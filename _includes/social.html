@@ -1,0 +1,5 @@
+{%- if site.social.github != "" -%}<a href="https://github.com/{{ site.social.github }}" aria-label="GitHub" rel="me">{% include icon.html name="github" %}</a>{%- endif -%}
+{%- if site.social.twitter != "" -%}<a href="https://x.com/{{ site.social.twitter }}" aria-label="X / Twitter" rel="me">{% include icon.html name="twitter" %}</a>{%- endif -%}
+{%- if site.social.linkedin != "" -%}<a href="https://www.linkedin.com/in/{{ site.social.linkedin }}" aria-label="LinkedIn" rel="me">{% include icon.html name="linkedin" %}</a>{%- endif -%}
+{%- if site.social.email != "" -%}<a href="mailto:{{ site.social.email }}" aria-label="Email">{% include icon.html name="email" %}</a>{%- endif -%}
+<a href="{{ '/feed.xml' | relative_url }}" aria-label="RSS feed">{% include icon.html name="rss" %}</a>

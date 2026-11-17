@@ -1,47 +1,14 @@
-{% include header.html %}
-<span class="statusbar"></span>
-{% include page-nav.html %}
-
-<div id="wrap">
-    <div class="container">
-        <div class="row row-offcanvas row-offcanvas-left">
-
-
-            <nav id="nav" role="navigation" class="col-sm-3 sidebar-offcanvas">
-                <header id="menu" role="banner">
-                    <p class="menu-title">Close</p>
-                    <a href="#nav" class="close-btn">Close</a>
-                </header>
-                <ul class="sidebar">
-                    <li><a href="{{site.url}}/tags.html">Home</a></li>
-                    <li><a href="{{site.url}}/tags.html">Writings</a></li>
-                    <li><a href="{{site.url}}/tags.html">Projects</a></li>
-                    <li><a href="{{site.url}}/tags.html">Open Source</a></li>
-                    <li><a href="{{site.url}}/tags.html">About</a></li>
-                    <li><a href="{{site.url}}/search.html">Search</a></li>
-                </ul>
-            </nav>
-
-
-            <header id="menu" role="banner">
-                <p class="menu-title">Menu</p>
-                <a href="#nav" class="menu-btn">navigation</a>
-            </header>
-
-
-            <div id="content" class="content col-sm-9">
-                <div class="row strip">
-                    {{ content }}
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-
-
-    <footer class="footer text-center blog-meta">
-    </footer>
-</div>
-
-{% include footer.html %}
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+  <head>
+    {% include head.html %}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {% include header.html %}
+    <main id="main" class="wrap">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>
