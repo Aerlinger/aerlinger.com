@@ -1,40 +1,37 @@
 ---
 layout: default
 ---
+<section class="hero">
+  <p class="eyebrow">Hi, I'm {{ site.author.name }} 👋</p>
+  <h1 class="hero-title">{{ site.tagline }}</h1>
+  <p class="hero-lede">{{ site.description }}</p>
+  <p class="hero-links social">{% include social.html %}</p>
+</section>
 
-<div class="col-sm-12">
-    <div class="posts">
-        {% for post in site.posts %}
-        <div class="post-li">
-            <div class="col-sm-8">
-                <ul class="postlist-block">
-                    <li><time class="timeago postlist-meta" datetime="{{ post.date |  date: "%A %-d %B %Y" }}">{{ post.date }}</time>
-                    <a class="postlist-meta pull-right comments-meta" href="{{ post.url }}#disqus_thread">0 <i class="fa fa-comments-o fa-lg"></i></a></li>
-                    <li><a class="postlist-title" href="{{ post.url }}">{{ post.title }}</a></li>
-                </ul>
-            </div>
+<section id="writing" class="section">
+  <div class="section-head">
+    <h2>Writing</h2>
+    <a class="muted-link" href="{{ '/tags/' | relative_url }}">Browse by tag →</a>
+  </div>
+  {% include post-list.html posts=site.posts %}
+</section>
 
-            <div class="col-sm-4 hide-on-phone">
-                <ul class="postlist-block pull-right postlist-meta">
-                    <li><a href="{{ post.url }}#disqus_thread">0 <i class="fa fa-comments-o fa-lg"></i></a></li>
-                    <li><a href="{{ post.url }}">Read more <i class="fa fa-chevron-right"></i></a></li>
-                    <li><strong><a class="postlist-detail-indicator">Expand +</a></strong></li>
-                </ul>
-            </div>
-
-            <div class="col-sm-12 postlist-detail">
-                {{post.excerpt}}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
-
-<script>
-    $(".post-li .postlist-detail-indicator").click(function() {
-        var preview = $(this);
-        preview.text(preview.text()=='Expand +'?'Collapse -':'Expand +');
-
-        $(this).closest(".post-li").find(".postlist-detail").toggle("slow", function() {});
-    });
-</script>
+<section id="projects" class="section">
+  <div class="section-head">
+    <h2>Projects</h2>
+    {% if site.social.github != "" %}<a class="muted-link" href="https://github.com/{{ site.social.github }}">All on GitHub →</a>{% endif %}
+  </div>
+  <ul class="cards">
+    {%- for project in site.projects %}
+    <li class="card">
+      <a href="{{ project.url_external | default: project.repo }}">
+        <h3>{{ project.title }} {% include icon.html name="arrow" %}</h3>
+        <p>{{ project.description }}</p>
+        {%- if project.tech %}
+        <ul class="chips">{% for t in project.tech %}<li>{{ t }}</li>{% endfor %}</ul>
+        {%- endif %}
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>

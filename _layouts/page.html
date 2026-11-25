@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="page">
+  <h1 class="page-title">{{ page.title | escape }}</h1>
+  {%- if page.prose == false %}
+  {{ content }}
+  {%- else %}
+  <div class="prose">
+    {{ content }}
+  </div>
+  {%- endif %}
+</article>

@@ -64,6 +64,6 @@ etc...
 
 Good luck!
 
-##Additional Resources
+## Additional Resources
 
   1.
